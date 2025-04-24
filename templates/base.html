@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Control de Horas Extras{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <!-- Encabezado superior -->
+        <header class="header">
+            <h1>Control de Horas Extras</h1>
+        </header>
+
+        <!-- Contenedor principal -->
+        <div class="main-container">
+            <!-- Barra lateral -->
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="{% url 'trabajador_list' %}">Trabajadores</a></li>
+                    <li><a href="#">Órdenes de Trabajo</a></li>
+                    <li><a href="#">Reportes</a></li>
+                </ul>
+            </nav>
+
+            <!-- Área de contenido -->
+            <main class="content">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>
