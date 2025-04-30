@@ -1,0 +1,59 @@
+.tabla-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.tabla thead {
+  background-color: #38373c; /* violeta oscuro */
+  color: white;
+}
+
+.tabla th, .tabla td {
+  padding: 15px 20px;
+  text-align: left;
+}
+
+.tabla th.align-right, .tabla td.align-right {
+  text-align: right;
+}
+
+.tabla tbody tr:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.tabla tbody tr:hover {
+  background-color: #eaeaea;
+  transition: background-color 0.2s;
+}
+
+.main-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.messages {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #e0ffe0;
+  border: 1px solid #b2ffb2;
+  border-radius: 6px;
+  color: #2f662f;
+  list-style: none;
+}
+
+.align-center {
+  text-align: center;
+}

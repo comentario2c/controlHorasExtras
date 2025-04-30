@@ -1,1 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/trabajadores/listar.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1 class="main-title">Listado de Trabajadores</h1>
+
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <div class="tabla-container">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th class="align-center">Nombre</th>
+          <th class="align-center">Fecha de Contrato</th>
+          <th class="align-center">Monto Base</th>
+          <th class="align-center">Bono Producción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for trabajador in trabajadores %}
+          <tr>
+            <td>{{ trabajador.Nombre }}</td>
+            <td>{{ trabajador.fecha_contrato|date:"d/m/Y" }}</td>
+            <td class="align-right">{{ trabajador.monto_base }}</td>
+            <td class="align-right">{{ trabajador.bono_produccion }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">No hay trabajadores registrados.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

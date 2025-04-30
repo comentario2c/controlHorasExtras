@@ -3,6 +3,7 @@ from django.views.generic import CreateView, UpdateView, ListView, DeleteView
 from .models import Trabajador
 from .forms import CrearEditarTrabajadorForm
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 # Vista para listar todos los trabajadores
 class TrabajadorListView(ListView):
@@ -14,7 +15,8 @@ class TrabajadorListView(ListView):
 class TrabajadorCreateView(CreateView):
     model = Trabajador
     form_class = CrearEditarTrabajadorForm
-    template_name = 'trabajadores/crear.html' # Cambiar a la ruta correcta del template
+    success_url = reverse_lazy('trabajador-crear')  # Redirige a la misma página después de crear
+    template_name = 'trabajadores/crear.html'
 
     def form_valid(self, form):
         response = super().form_valid(form)
