@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Crear Trabajador{% endblock %}
+
+{% block content %}
+<div class="crear-trabajador-container">
+    <div class="crear-card">
+        <h1 class="crear-title">Crear nuevo trabajador</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.Nombre.id_for_label }}">Nombre</label>
+                {{ form.Nombre }}
+                {% if form.Nombre.errors %}
+                    <p class="error-message">{{ form.Nombre.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.fecha_contrato.id_for_label }}">Fecha de Contrato</label>
+                {{ form.fecha_contrato }}
+                {% if form.fecha_contrato.errors %}
+                    <p class="error-message">{{ form.fecha_contrato.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.monto_base.id_for_label }}">Monto Base</label>
+                {{ form.monto_base }}
+                {% if form.monto_base.errors %}
+                    <p class="error-message">{{ form.monto_base.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.bono_produccion.id_for_label }}">Bono de Producción</label>
+                {{ form.bono_produccion }}
+                {% if form.bono_produccion.errors %}
+                    <p class="error-message">{{ form.bono_produccion.errors }}</p>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="crear-boton">Crear trabajador</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

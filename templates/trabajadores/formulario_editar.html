@@ -1,0 +1,13 @@
+{% extends "base.html" %} <!-- Si tienes un base.html, si no, quita esta línea -->
+
+{% block content %}
+<h1>Editar Trabajador</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- O {{ form }} si quieres personalizar más el HTML -->
+    
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a href="{% url 'trabajador-gestionar' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
