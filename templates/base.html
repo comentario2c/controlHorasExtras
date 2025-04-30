@@ -11,34 +11,70 @@
 <body>
     <!-- Topbar -->
     <div class="topbar">
-      <!-- Usuario / Iconos -->
-      <span class="sidebar-icon">⏰</span>
-      Horas Extras
+        <!-- Usuario / Iconos -->
+        <span class="sidebar-icon">⏰</span>
+        Horas Extras
     </div>
-  
+
     <!-- Contenedor Principal -->
     <div class="wrapper">
-  
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <nav class="sidebar-nav">
-          <a href="#" class="sidebar-link active">Trabajadores</a>
-          <a href="#" class="sidebar-link">Órdenes</a>
-          <a href="#" class="sidebar-link">Horas</a>
-          <a href="#" class="sidebar-link">Bonos</a>
-          <a href="#" class="sidebar-link">Reportes</a>
-        </nav>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <nav class="sidebar-nav">
+              <!-- Trabajadores Menu -->
+              <div class="sidebar-dropdown">
+                  <a href="#" class="sidebar-link dropdown-toggle">Trabajadores</a>
+                  <div class="dropdown-menu">
+                      <a href="crear/" class="sidebar-link">Crear</a>
+                      <a href="listar/" class="sidebar-link">Mostrar</a>
+                      <a href="gestionar/" class="sidebar-link">Editar</a>
+                  </div>
+              </div>
+
+              <!--------Ordenes menu------->
+              <div class="sidebar-dropdown">
+                  <a href="#" class="sidebar-link dropdown-toggle">Órdenes</a>
+                  <div class="dropdown-menu">
+                    <a href="#" class="sidebar-link">Crear</a>
+                    <a href="#" class="sidebar-link">Mostrar</a>
+                    <a href="#" class="sidebar-link">Editar</a>
+                  </div>
+              </div>
+
+              <!--------Horas Menu------>
+              <div class="sidebar-dropdown">
+                  <a href="#" class="sidebar-link dropdown-toggle">Horas</a>
+                  <div class="dropdown-menu">
+                    <a href="#" class="sidebar-link">Crear</a>
+                    <a href="#" class="sidebar-link">Mostrar</a>
+                    <a href="#" class="sidebar-link">Editar</a>
+                  </div>
+              </div>
+
+              <!------- Bonos Menu-->
+              <div class="sidebar-dropdown">
+                  <a href="#" class="sidebar-link dropdown-toggle">Bonos</a>
+                  <div class="dropdown-menu">
+                    <a href="#" class="sidebar-link">Crear</a>
+                    <a href="#" class="sidebar-link">Mostrar</a>
+                    <a href="#" class="sidebar-link">Editar</a>
+                  </div>
+              </div>
+
+              <a href="#" class="sidebar-link">Reportes</a>
+          </nav>
       </aside>
-  
-      <!-- Main Content -->
-      <main class="main-content">
-        {% block content %}{% endblock %}
-      </main>
+        <!-- Main Content -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
     </div>
-  
+
     <!-- Footer -->
     <footer class="footer">
-      © 2024 Horas Extra Pro
+        © 2024 Horas Extra Pro
     </footer>
-  </body>
-  
+<script src="{% static 'css/base.js' %}"></script>
+</body>
+</html>
