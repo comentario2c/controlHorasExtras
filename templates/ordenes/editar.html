@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ view.object.pk|yesno:"Editar Orden,Crear Orden" }}{% endblock %}
+
+{% block content %}
+<div id="main-content" class="bg-gradient-to-b from-sky-200 to-sky-50 pt-3 pb-12 px-8 min-h-screen transition-all duration-200">
+    <div class="py-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-sky-900">{{ view.object.pk|yesno:"Editar Orden,Crear Orden" }}</h2>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-lg font-semibold mb-4 text-sky-800 border-b pb-2">Información de la Orden</h3>
+            
+            <form method="post" class="grid grid-cols-1 md:grid-cols-2 gap-6" id="CrearEditarOrdenForm">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-sm text-red-600 mt-1">{{ field.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="md:col-span-2 flex justify-end mt-6">
+                    <button type="submit" class="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17 21 17 13 7 13 7 21"/>
+                            <polyline points="7 3 7 8 15 8"/>
+                        </svg>
+                        Guardar
+                    </button>   
+                    <a href="{% url 'orden-listar' %}"
+                    class="flex items-center gap-2 bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

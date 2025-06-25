@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Listado de Órdenes de Trabajo{% endblock %}
+
+{% block content %}
+<div class="py-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Listado de Órdenes de Trabajo</h2>
+        <a href="{% url 'orden-crear' %}" class="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Agregar Orden</span>
+        </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-4 border-b border-slate-200">
+            <input type="text" id="buscador" placeholder="Buscar orden..." class="w-full pl-4 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" value="{{ request.GET.q }}">
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left table-auto">
+                <thead class="bg-slate-100 text-slate-600 uppercase text-sm">
+                    <tr>
+                        <th class="py-3 px-6">ID</th>
+                        <th class="py-3 px-6">Descripción</th>
+                        <th class="py-3 px-6 text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    {% for orden in ordenes %}
+                    <tr class="hover:bg-slate-50 transition-colors duration-150">
+                        <td class="py-4 px-6">{{ orden.ID_OrdenTrabajo }}</td>
+                        <td class="py-4 px-6">{{ orden.Descripcion }}</td>
+                        <td class="py-4 px-6 text-center">
+                            <div class="flex justify-center gap-4">
+                                {% if orden.ID_OrdenTrabajo %}
+                                    <a href="{% url 'orden-editar' orden.ID_OrdenTrabajo %}" class="text-blue-600 hover:underline">Editar</a>
+                                    <a href="{% url 'orden-eliminar' orden.ID_OrdenTrabajo %}" class="text-red-600 hover:underline">Eliminar</a>
+                                {% else %}
+                                    <span class="text-slate-400">Sin acciones</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="py-4 px-6 text-center text-slate-500">No hay órdenes registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+  document.getElementById('buscador').addEventListener('input', function () {
+    const filter = this.value.toLowerCase().trim();
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+      // Obtenemos el texto del ID y la Descripción en cada fila
+      const id = row.cells[0].textContent.toLowerCase();
+      const descripcion = row.cells[1].textContent.toLowerCase();
+
+      // Si el ID o descripción contiene el texto del input, mostramos, si no ocultamos
+      if (id.includes(filter) || descripcion.includes(filter)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+.sidebar-hover-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 40px;
+    height: 100%;
+    z-index: 10;
+}
+.submenu {
+    transition: max-height 0.3s ease-in-out, opacity 0.2s ease;
+    overflow: hidden;
+}
+.sidebar-collapsed .menu-text {
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+}
+.sidebar-collapsed .submenu {
+    display: none !important;
+}
+.sidebar-collapsed {
+    width: 72px;
+}
+.sidebar-expanded {
+    width: 240px;
+}
+.rotate-chevron {
+    transform: rotate(180deg);
+}
+@media (max-width: 639px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar-mobile-open {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

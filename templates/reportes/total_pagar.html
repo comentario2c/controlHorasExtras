@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Total a Pagar{% endblock %}
+
+{% block content %}
+<div class="py-6">
+    <h2 class="text-2xl font-bold mb-6">Total a Pagar por Horas Extras y Bonos</h2>
+
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left table-auto">
+                <thead class="bg-slate-100 text-slate-600 uppercase text-sm">
+                    <tr>
+                        <th class="py-3 px-6">Trabajador</th>
+                        <th class="py-3 px-6 text-right">Total Horas Extra</th>
+                        <th class="py-3 px-6 text-right">Total Bonos</th>
+                        <th class="py-3 px-6 text-right">Total a Pagar (CLP)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    {% for item in reporte %}
+                    <tr class="hover:bg-slate-50 transition-colors duration-150">
+                        <td class="py-4 px-6">{{ item.ID_Trabajador__Nombre }}</td>
+                        <td class="py-4 px-6 text-right">{{ item.total_horas_extra|floatformat:2 }}</td>
+                        <td class="py-4 px-6 text-right">{{ item.total_bonos|floatformat:2 }}</td>
+                        <td class="py-4 px-6 text-right font-semibold text-green-600">{{ item.total_pagar|intcomma }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="py-4 px-6 text-center text-slate-500">No hay datos disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <script src="{% static 'js/ordentrabajo/crear.js' %}"></script>
+{% endblock %}
+
+{% block title %}Crear Orden de Trabajo{% endblock %}
+
+{% block content %}
+<div id="main-content" class="bg-gradient-to-b from-sky-200 to-sky-50 pt-3 pb-12 px-8 min-h-screen transition-all duration-200">
+    <div class="py-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Registrar Orden de Trabajo</h2>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-lg font-semibold mb-4 text-teal-800 border-b pb-2">Información de la Orden</h3>
+
+            <form method="post" id="ordentrabajo-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% csrf_token %}
+
+                <!-- Mostrar errores generales del formulario -->
+                {% if form.non_field_errors %}
+                    <div class="md:col-span-2 text-red-600 bg-red-100 border border-red-300 p-3 rounded">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <!-- ID Orden -->
+                <div class="space-y-2 md:col-span-2">
+                    <label for="{{ form.ID_OrdenTrabajo.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        ID Orden
+                    </label>
+                    <div class="relative">
+                        {{ form.ID_OrdenTrabajo }}
+                        {% if form.ID_OrdenTrabajo.errors %}
+                            <p class="text-red-500 text-sm">{{ form.ID_OrdenTrabajo.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Descripción -->
+                <div class="space-y-2 md:col-span-2">
+                    <label for="{{ form.Descripcion.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        Descripción
+                    </label>
+                    <div class="relative">
+                        {{ form.Descripcion }}
+                        {% if form.Descripcion.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ form.Descripcion.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Botón -->
+                <div class="md:col-span-2 flex justify-end mt-4">
+                    <button type="submit" class="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <script src="{% static 'js/trabajadores/crear.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}Editar Trabajador{% endblock %}
+
+{% block content %}
+    <div id="main-content" class="bg-gradient-to-b from-sky-200 to-sky-50 pt-3 pb-12 px-8 min-h-screen transition-all duration-200">
+        <div class="py-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Editar Trabajador</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h3 class="text-lg font-semibold mb-4 text-teal-800 border-b pb-2">Información Básica</h3>
+            <div class="container">
+                <form method="post" id="CrearEditarTrabajadorForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="md:col-span-2 flex justify-end mt-4">
+                        <button type="submit" class="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {% comment %} Resumen del Trabajador {% endcomment %}
+            <div class="space-y-2 col-span-1 md:col-span-2 max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4 text-teal-800 border-b pb-2">Resumen del Trabajador</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium" id="preview-name">Nombre del Trabajador</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-500">Fecha de Contrato:</span>
+                                <span class="text-sm font-medium" id="preview-date">01/01/2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-500">Monto Base:</span>
+                                <span class="formato-miles text-sm font-medium" id="preview-base">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-500">Bono Producción:</span>
+                                <span class="formato-miles text-sm font-medium" id="preview-bonus">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-teal-50 rounded-lg p-4">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-500">Hora Ordinaria:</span>
+                                <span class="formato-miles text-sm font-medium" id="preview-regular">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-500">Hora Extra:</span>
+                                <span class="formato-miles text-sm font-medium" id="preview-hora-extra-volver-preview">$0</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-700">Tipo:</span>
+                                    <span class="text-sm font-medium text-teal-700" id="preview-Tipo">Soldador</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-amber-50 rounded-lg p-4">
+                            <h4 class="text-sm font-medium text-amber-800 mb-2">Salario Estimado</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">Con bono incluido:</span>
+                                <span class="formato-miles text-lg font-bold text-amber-700" id="preview-salary">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
